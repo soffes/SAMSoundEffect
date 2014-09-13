@@ -21,6 +21,19 @@
 
 #pragma mark - Class Methods
 
++ (void)initialize {
+	if (self == [SAMSoundEffect class]) {
+		[[NSNotificationCenter defaultCenter]
+         addObserverForName:AVAudioSessionMediaServicesWereResetNotification
+         object:nil
+         queue:nil
+         usingBlock:^(NSNotification *notification) {
+             [[self _cache] removeAllObjects];
+         }];
+	}
+}
+
+
 + (NSCache *)_cache {
 	static NSCache *cache = nil;
 	static dispatch_once_t onceToken;

@@ -1,4 +1,4 @@
-//
+///
 //  SAMSoundEffect.m
 //  SAMSoundEffect
 //
@@ -60,7 +60,7 @@
 	
 	SAMSoundEffect *cachedSoundEffect = [[self _cache] objectForKey:name];
 	if (!cachedSoundEffect) {
-		NSString *fileName = [[name pathComponents] lastObject];
+		NSString *fileName = [[[name pathComponents] lastObject] stringByDeletingPathExtension];
 		NSString *fileExtension = [name pathExtension];
 		if ([fileExtension isEqualToString:@""]) {
 			fileExtension = @"caf";

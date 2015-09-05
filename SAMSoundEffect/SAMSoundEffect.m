@@ -59,8 +59,9 @@
 	if (!bundleOrNil) {
 		bundleOrNil = [NSBundle mainBundle];
 	}
-	
-	SAMSoundEffect *cachedSoundEffect = [[self _cache] objectForKey:name];
+
+	NSString *cacheKey = [NSString stringWithFormat:@"%@-%@", bundleOrNil.bundleIdentifier, name];
+	SAMSoundEffect *cachedSoundEffect = [[self _cache] objectForKey:cacheKey];
 	if (!cachedSoundEffect) {
 		NSString *fileName = [[[name pathComponents] lastObject] stringByDeletingPathExtension];
 		NSString *fileExtension = [name pathExtension];
@@ -70,7 +71,7 @@
 		
 		cachedSoundEffect = [[SAMSoundEffect alloc] initWithContentsOfFile:[bundleOrNil pathForResource:fileName ofType:fileExtension]];
 		if (cachedSoundEffect) {
-			[[self _cache] setObject:cachedSoundEffect forKey:name];
+			[[self _cache] setObject:cachedSoundEffect forKey:cacheKey];
 		} else {
 			NSLog(@"[SAMSoundEffect] Could not find file named: %@ in bundle: %@", name, bundleOrNil.bundleIdentifier);
 		}

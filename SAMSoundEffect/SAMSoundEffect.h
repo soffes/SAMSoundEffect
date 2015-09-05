@@ -7,7 +7,13 @@
 //
 
 @import Foundation;
-@import AVFoundation;
+
+//! Project version number for SAMSoundEffect.
+FOUNDATION_EXPORT double SAMSoundEffectVersionNumber;
+
+//! Project version string for SAMSoundEffect.
+FOUNDATION_EXPORT const unsigned char SAMSoundEffectVersionString[];
+
 
 /**
  This class simplifies playing sound effects as well as implementing basic caching behavior. It retains an

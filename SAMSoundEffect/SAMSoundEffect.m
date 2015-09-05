@@ -8,6 +8,8 @@
 
 #import "SAMSoundEffect.h"
 
+@import AVFoundation;
+
 @interface SAMSoundEffect ()
 @property (nonatomic) AVAudioPlayer *player;
 @end
